@@ -1,0 +1,59 @@
+<div>
+    <div class="search">
+        <img src="img/icon-pokedex.png" alt="Pokédex's icon">
+        <form method="get" action="/result">
+            <input type="text"  id="searchBar" name="searchBar" placeholder="Search your Pokémon by name or ID...">
+            <input type="submit" id="search_btn" class="search_btn" value="Search">
+        </form>
+    </div>
+     <h3>Gotcha ! <span id="name_pokemon"><%= pokeName%></span> was found !</h3>
+    <div id="box-result">
+        <ul class="pokemonList">
+            <li>
+                <div class="column-left">
+                    <img src="<%= pokeImg %>">
+                </div>
+                <div class="column-right">
+                    <div class="title-container">
+                        <h2><%= pokeName%></h2>  
+                        <div>
+                            <div class="tag-id"><p><%= pokeID%></p></div>
+                            <div class="tag-type">
+                                <p> <% pokeType.forEach((els) => { %>
+                                    <%= els.type.name %>
+                                    <%})%>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <p>Species : <%= pokeSpecies%></p>
+                    <p>Abilities : <% let comma = "";
+                        pokeAbilities.forEach((el) => {
+                        if (el.ability.name != " "){
+                        comma = comma + el.ability.name + ", "
+                        }
+                        });
+                        let lastIndex = comma.lastIndexOf(",");
+                        if(lastIndex == comma.length-2)
+                        comma = comma.substring(0, lastIndex);
+                        %>
+                        <%= comma %>
+                    </p>
+                    <div class="caracteristics-container">
+                        <div><p>Weight</p><p><%= pokeWeight%>.00Hg</p></div>
+                        <div class="right"><p>Height</p><p><%= pokeHeight%>.00Dm</p></div>
+                    </div>
+                    <div class="bottom-container">
+                        <div class="baseExp-container">
+                            <div class="circle">
+                                 <p><%= pokeBaseExperience%></p>
+                            </div>
+                            <p>Base Experience</p>
+                        </div>
+                        <p class="order">National Pokédex Order : <%= pokeOrder%></p>
+                    </div>
+                </div>
+            </li>
+         </ul>
+    </div>
+</div>
